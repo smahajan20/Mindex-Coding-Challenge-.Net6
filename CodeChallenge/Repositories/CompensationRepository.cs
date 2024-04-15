@@ -2,7 +2,6 @@
 using CodeChallenge.Models;
 using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +26,7 @@ namespace CodeChallenge.Repositories
 
         public Compensation GetByEmployeeId(String employeeId)
         {
-            return _compensationContext.Compensations.SingleOrDefault(c => c.Employee.EmployeeId == employeeId);
+            return _compensationContext.Compensations.Include(c => c.Employee).Where(c => c.Employee.EmployeeId == employeeId).FirstOrDefault();
         }
 
         public Task SaveAsync()
