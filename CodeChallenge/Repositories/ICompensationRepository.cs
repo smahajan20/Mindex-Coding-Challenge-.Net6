@@ -7,7 +7,7 @@ namespace CodeChallenge.Repositories
     public interface ICompensationRepository
     {
         Compensation GetByEmployeeId(String employeeId);
-        Compensation Add(Compensation compensation);
+        Compensation AddOrUpdate(Compensation compensation);
         Task SaveAsync();
     }
 }

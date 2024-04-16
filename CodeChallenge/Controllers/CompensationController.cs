@@ -27,16 +27,16 @@ namespace CodeChallenge.Controllers
                 return NotFound();
             }
 
-            if(compensation.Employee ==  null && compensation.Employee.EmployeeId == null)
+            if(compensation.EmployeeId == null)
             {
-                return NotFound("Employee not found");
+                return NotFound("Employee Id is null");
             }
 
             _logger.LogDebug($"Received compensation create request");
 
             _compensationService.Create(compensation);
 
-            return CreatedAtRoute("getByEmployeeId", new { employeeId = compensation.Employee.EmployeeId }, compensation);
+            return CreatedAtRoute("getByEmployeeId", new { employeeId = compensation.EmployeeId }, compensation);
         }
 
         [HttpGet("{employeeId}", Name = "getByEmployeeId")]

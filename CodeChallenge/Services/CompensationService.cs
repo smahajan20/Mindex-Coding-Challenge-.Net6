@@ -19,7 +19,7 @@ namespace CodeChallenge.Services
         {
             if(compensation != null)
             {
-                _compensationRepository.Add(compensation);
+                _compensationRepository.AddOrUpdate(compensation);
                 _compensationRepository.SaveAsync().Wait();
             }
             return compensation;

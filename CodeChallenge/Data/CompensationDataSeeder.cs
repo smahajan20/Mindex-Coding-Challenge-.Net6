@@ -10,28 +10,28 @@ namespace CodeChallenge.Data
 {
     public class CompensationDataSeeder
     {
-        private CompensationContext _compensationContext;
-        private const String EMPLOYEE_SEED_DATA_FILE = "resources/CompensationSeedData.json";
+        private EmployeeContext _employeeContext;
+        private const String COMPENSATION_SEED_DATA_FILE = "resources/CompensationSeedData.json";
 
-        public CompensationDataSeeder(CompensationContext compensationContext)
+        public CompensationDataSeeder(EmployeeContext employeeContext)
         {
-            _compensationContext = compensationContext;
+            _employeeContext = employeeContext;
         }
 
         public async Task Seed()
         {
-            if(!_compensationContext.Compensations.Any())
+            if(!_employeeContext.Compensations.Any())
             {
                 List<Compensation> compensations = LoadCompensations();
-                _compensationContext.Compensations.AddRange(compensations);
+                _employeeContext.Compensations.AddRange(compensations);
                 
-                await _compensationContext.SaveChangesAsync();
+                await _employeeContext.SaveChangesAsync();
             }
         }
 
         private List<Compensation> LoadCompensations()
         {
-            using (FileStream fs = new FileStream(EMPLOYEE_SEED_DATA_FILE, FileMode.Open))
+            using (FileStream fs = new FileStream(COMPENSATION_SEED_DATA_FILE, FileMode.Open))
             using (StreamReader sr = new StreamReader(fs))
             using (JsonReader jr = new JsonTextReader(sr))
             {

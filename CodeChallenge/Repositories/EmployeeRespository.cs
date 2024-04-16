@@ -30,6 +30,8 @@ namespace CodeChallenge.Repositories
 
         public Employee GetById(string id)
         {
+            // Added the below logic, instead of using the original logic of SingleOrDefault, to get the direct reports as well
+            // SingleOrDefault method doesn't return DirectReports
             foreach (Employee emp in _employeeContext.Employees.ToList())
             {
                 if (emp.EmployeeId == id)
@@ -38,7 +40,6 @@ namespace CodeChallenge.Repositories
                 }
             }
 
-            //Employee result = _employeeContext.Employees.SingleOrDefault(e => e.EmployeeId == id);
             return null;
             
         }
